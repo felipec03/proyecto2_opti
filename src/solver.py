@@ -231,6 +231,12 @@ PLANTAS = {
 
 def imprimir_resultado(res: ResultadoCFLP) -> None:
     """Imprime un resumen formateado del resultado de la optimización."""
+
+    if res.solver_utilizado == "CPLEX_CMD":
+        print("Se encontró CPLEX")
+    else:
+        print("No se encontró CPLEX")
+
     print("=" * 72)
     print(f"  {res.nombre}")
     print("=" * 72)
@@ -242,7 +248,7 @@ def imprimir_resultado(res: ResultadoCFLP) -> None:
         print(f"  ⚠ No se encontró solución óptima.")
         print()
         return
-
+    
     print(f"  ┌─────────────────────────────────────────────┐")
     print(f"  │  Valor F. Objetivo:  {res.valor_objetivo:>16,.2f} CLP/día │")
     print(f"  │  Costo Fijo Total:   {res.costo_fijo_total:>16,.2f} CLP/día │")

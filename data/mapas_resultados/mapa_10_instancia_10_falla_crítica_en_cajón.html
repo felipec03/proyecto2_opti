@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_5ffa573e831047a51fe91f50c34fbe3c {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_5ffa573e831047a51fe91f50c34fbe3c" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_5ffa573e831047a51fe91f50c34fbe3c = L.map(
+                "map_5ffa573e831047a51fe91f50c34fbe3c",
+                {
+                    center: [-38.735, -72.62],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_7adc955d9d1fd0225c854afe7eddc7a4 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_7adc955d9d1fd0225c854afe7eddc7a4.addTo(map_5ffa573e831047a51fe91f50c34fbe3c);
+        
+    
+            var marker_0bb08e701c46b512f055a4680968d4a4 = L.marker(
+                [-38.7397, -72.5901],
+                {
+}
+            ).addTo(map_5ffa573e831047a51fe91f50c34fbe3c);
+        
+    
+            var icon_dde13f9516dbc296b6b0c3ca92795dc7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "users",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_51723a6bbc67a9a0321ac8527968dc65 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7704333f29ec7ba66513bebc9ee02bcd = $(`<div id="html_7704333f29ec7ba66513bebc9ee02bcd" style="width: 100.0%; height: 100.0%;">Macrosector 1: Centro</div>`)[0];
+                popup_51723a6bbc67a9a0321ac8527968dc65.setContent(html_7704333f29ec7ba66513bebc9ee02bcd);
+            
+        
+
+        marker_0bb08e701c46b512f055a4680968d4a4.bindPopup(popup_51723a6bbc67a9a0321ac8527968dc65)
+        ;
+
+        
+    
+    
+            marker_0bb08e701c46b512f055a4680968d4a4.bindTooltip(
+                `<div>
+                     Macrosector 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0bb08e701c46b512f055a4680968d4a4.setIcon(icon_dde13f9516dbc296b6b0c3ca92795dc7);
+            
+    
+            var marker_7115ab41f35a5f75197b07fb8b06d289 = L.marker(
+                [-38.7554, -72.6189],
+                {
+}
+            ).addTo(map_5ffa573e831047a51fe91f50c34fbe3c);
+        
+    
+            var icon_8d4d81fd7bd9c48d30d7e0097bc69444 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "users",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7a2e0d9c29988204ce0acd1fefd4e859 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_07ff5dccf6fb2afb76f5fd6b83b028ce = $(`<div id="html_07ff5dccf6fb2afb76f5fd6b83b028ce" style="width: 100.0%; height: 100.0%;">Macrosector 2: Amanecer</div>`)[0];
+                popup_7a2e0d9c29988204ce0acd1fefd4e859.setContent(html_07ff5dccf6fb2afb76f5fd6b83b028ce);
+            
+        
+
+        marker_7115ab41f35a5f75197b07fb8b06d289.bindPopup(popup_7a2e0d9c29988204ce0acd1fefd4e859)
+        ;
+
+        
+    
+    
+            marker_7115ab41f35a5f75197b07fb8b06d289.bindTooltip(
+                `<div>
+                     Macrosector 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7115ab41f35a5f75197b07fb8b06d289.setIcon(icon_8d4d81fd7bd9c48d30d7e0097bc69444);
+            
+    
+            var marker_ed2fb3acb7552b3c7b3a5dfe23a27577 = L.marker(
+                [-38.7758, -72.7165],
+                {
+}
+            ).addTo(map_5ffa573e831047a51fe91f50c34fbe3c);
+        
+    
+            var icon_e7b71bc198a0e4f0b6e458bda07aa031 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "users",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_558bc666e0f39af04593d45b06c0a5dd = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7435c0173c69bac9db3ea93839fc051c = $(`<div id="html_7435c0173c69bac9db3ea93839fc051c" style="width: 100.0%; height: 100.0%;">Macrosector 3: Labranza</div>`)[0];
+                popup_558bc666e0f39af04593d45b06c0a5dd.setContent(html_7435c0173c69bac9db3ea93839fc051c);
+            
+        
+
+        marker_ed2fb3acb7552b3c7b3a5dfe23a27577.bindPopup(popup_558bc666e0f39af04593d45b06c0a5dd)
+        ;
+
+        
+    
+    
+            marker_ed2fb3acb7552b3c7b3a5dfe23a27577.bindTooltip(
+                `<div>
+                     Macrosector 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ed2fb3acb7552b3c7b3a5dfe23a27577.setIcon(icon_e7b71bc198a0e4f0b6e458bda07aa031);
+            
+    
+            var marker_2bc015c1d72580d8080d5a1f17918781 = L.marker(
+                [-38.7208, -72.5768],
+                {
+}
+            ).addTo(map_5ffa573e831047a51fe91f50c34fbe3c);
+        
+    
+            var icon_c18f78aba25d333c0b51d4d18306d6e4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "users",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_65cebbe64c231015a90e6c5812b7410c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cb73c9a66661aa0bd36360d4a754bcf2 = $(`<div id="html_cb73c9a66661aa0bd36360d4a754bcf2" style="width: 100.0%; height: 100.0%;">Macrosector 4: Pueblo Nuevo</div>`)[0];
+                popup_65cebbe64c231015a90e6c5812b7410c.setContent(html_cb73c9a66661aa0bd36360d4a754bcf2);
+            
+        
+
+        marker_2bc015c1d72580d8080d5a1f17918781.bindPopup(popup_65cebbe64c231015a90e6c5812b7410c)
+        ;
+
+        
+    
+    
+            marker_2bc015c1d72580d8080d5a1f17918781.bindTooltip(
+                `<div>
+                     Macrosector 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2bc015c1d72580d8080d5a1f17918781.setIcon(icon_c18f78aba25d333c0b51d4d18306d6e4);
+            
+    
+            var marker_74ce3806579a3a586dcb2efc2b2c87f4 = L.marker(
+                [-38.7346, -72.6247],
+                {
+}
+            ).addTo(map_5ffa573e831047a51fe91f50c34fbe3c);
+        
+    
+            var icon_38a73912485d46c3ba4976020dbb86e8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "users",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c59979dc2897c490b6f8fcbbb4123123 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9a5c3d6f1843354fe786a0bca2082558 = $(`<div id="html_9a5c3d6f1843354fe786a0bca2082558" style="width: 100.0%; height: 100.0%;">Macrosector 5: Pedro de Valdivia</div>`)[0];
+                popup_c59979dc2897c490b6f8fcbbb4123123.setContent(html_9a5c3d6f1843354fe786a0bca2082558);
+            
+        
+
+        marker_74ce3806579a3a586dcb2efc2b2c87f4.bindPopup(popup_c59979dc2897c490b6f8fcbbb4123123)
+        ;
+
+        
+    
+    
+            marker_74ce3806579a3a586dcb2efc2b2c87f4.bindTooltip(
+                `<div>
+                     Macrosector 5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_74ce3806579a3a586dcb2efc2b2c87f4.setIcon(icon_38a73912485d46c3ba4976020dbb86e8);
+            
+    
+            var marker_75ba1c9aa925b32aa30d0756c7f91644 = L.marker(
+                [-38.7214, -72.6475],
+                {
+}
+            ).addTo(map_5ffa573e831047a51fe91f50c34fbe3c);
+        
+    
+            var icon_0e1cd2f1e19651cfa39e81260c07a136 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "users",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b1d8ce14f9c6804e465305509c02cc52 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2f1f2f595127cbf429a10bc4a11519a8 = $(`<div id="html_2f1f2f595127cbf429a10bc4a11519a8" style="width: 100.0%; height: 100.0%;">Macrosector 6: Fundo El Carmen</div>`)[0];
+                popup_b1d8ce14f9c6804e465305509c02cc52.setContent(html_2f1f2f595127cbf429a10bc4a11519a8);
+            
+        
+
+        marker_75ba1c9aa925b32aa30d0756c7f91644.bindPopup(popup_b1d8ce14f9c6804e465305509c02cc52)
+        ;
+
+        
+    
+    
+            marker_75ba1c9aa925b32aa30d0756c7f91644.bindTooltip(
+                `<div>
+                     Macrosector 6
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_75ba1c9aa925b32aa30d0756c7f91644.setIcon(icon_0e1cd2f1e19651cfa39e81260c07a136);
+            
+    
+            var marker_59af69d6ab699a031b944ab24306de0b = L.marker(
+                [-38.7362, -72.6074],
+                {
+}
+            ).addTo(map_5ffa573e831047a51fe91f50c34fbe3c);
+        
+    
+            var icon_98742f513627e40de8ef9be1571dcce8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "users",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_424ed81b58603d617775c16886dc60b2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_32a35a32bf3a739a66f944040ee19fbf = $(`<div id="html_32a35a32bf3a739a66f944040ee19fbf" style="width: 100.0%; height: 100.0%;">Macrosector 7: Poniente</div>`)[0];
+                popup_424ed81b58603d617775c16886dc60b2.setContent(html_32a35a32bf3a739a66f944040ee19fbf);
+            
+        
+
+        marker_59af69d6ab699a031b944ab24306de0b.bindPopup(popup_424ed81b58603d617775c16886dc60b2)
+        ;
+
+        
+    
+    
+            marker_59af69d6ab699a031b944ab24306de0b.bindTooltip(
+                `<div>
+                     Macrosector 7
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_59af69d6ab699a031b944ab24306de0b.setIcon(icon_98742f513627e40de8ef9be1571dcce8);
+            
+    
+            var marker_f3bd174f88171eabee6ffcbfd8cdba9c = L.marker(
+                [-38.7486, -72.5855],
+                {
+}
+            ).addTo(map_5ffa573e831047a51fe91f50c34fbe3c);
+        
+    
+            var icon_4e0d4e9f79aaaa92b188fa7b5130f61f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "users",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_68ff36ba0a3741eb6e4e9ca2639602f3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_599514a065c7f5cd506b3f4dfed9237c = $(`<div id="html_599514a065c7f5cd506b3f4dfed9237c" style="width: 100.0%; height: 100.0%;">Macrosector 8: Costanera del Cautín</div>`)[0];
+                popup_68ff36ba0a3741eb6e4e9ca2639602f3.setContent(html_599514a065c7f5cd506b3f4dfed9237c);
+            
+        
+
+        marker_f3bd174f88171eabee6ffcbfd8cdba9c.bindPopup(popup_68ff36ba0a3741eb6e4e9ca2639602f3)
+        ;
+
+        
+    
+    
+            marker_f3bd174f88171eabee6ffcbfd8cdba9c.bindTooltip(
+                `<div>
+                     Macrosector 8
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f3bd174f88171eabee6ffcbfd8cdba9c.setIcon(icon_4e0d4e9f79aaaa92b188fa7b5130f61f);
+            
+    
+            var marker_ee17ec601ce8d553b6c8fbaca21f293e = L.marker(
+                [-38.7705, -72.695],
+                {
+}
+            ).addTo(map_5ffa573e831047a51fe91f50c34fbe3c);
+        
+    
+            var icon_16ca942dbf4a9b7147962e632c54b0c5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8ca29d5f1b4e7d9457156536c45a7ac4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2d9efdd879a8898b8ad02228a45ffdaf = $(`<div id="html_2d9efdd879a8898b8ad02228a45ffdaf" style="width: 100.0%; height: 100.0%;">Planta 1: Temuco – Labranza Mayor<br>Estado: Abierta</div>`)[0];
+                popup_8ca29d5f1b4e7d9457156536c45a7ac4.setContent(html_2d9efdd879a8898b8ad02228a45ffdaf);
+            
+        
+
+        marker_ee17ec601ce8d553b6c8fbaca21f293e.bindPopup(popup_8ca29d5f1b4e7d9457156536c45a7ac4)
+        ;
+
+        
+    
+    
+            marker_ee17ec601ce8d553b6c8fbaca21f293e.bindTooltip(
+                `<div>
+                     Planta 1 (Abierta)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ee17ec601ce8d553b6c8fbaca21f293e.setIcon(icon_16ca942dbf4a9b7147962e632c54b0c5);
+            
+    
+            var marker_1588edf27ba2abd697dcd2997d3ab128 = L.marker(
+                [-38.765, -72.715],
+                {
+}
+            ).addTo(map_5ffa573e831047a51fe91f50c34fbe3c);
+        
+    
+            var icon_43696d54dde76ff0404bcdd15c0e8f54 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_122d0b384d9e76c681d20a96b63f0e02 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f0a4b9d3a6b40645df157e619dc3e6cb = $(`<div id="html_f0a4b9d3a6b40645df157e619dc3e6cb" style="width: 100.0%; height: 100.0%;">Planta 2: Temuco – Labranza Menor<br>Estado: Cerrada</div>`)[0];
+                popup_122d0b384d9e76c681d20a96b63f0e02.setContent(html_f0a4b9d3a6b40645df157e619dc3e6cb);
+            
+        
+
+        marker_1588edf27ba2abd697dcd2997d3ab128.bindPopup(popup_122d0b384d9e76c681d20a96b63f0e02)
+        ;
+
+        
+    
+    
+            marker_1588edf27ba2abd697dcd2997d3ab128.bindTooltip(
+                `<div>
+                     Planta 2 (Cerrada)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1588edf27ba2abd697dcd2997d3ab128.setIcon(icon_43696d54dde76ff0404bcdd15c0e8f54);
+            
+    
+            var marker_dbc43cb1d396798a2a04e887e3b2cbfe = L.marker(
+                [-38.6855, -72.536],
+                {
+}
+            ).addTo(map_5ffa573e831047a51fe91f50c34fbe3c);
+        
+    
+            var icon_0eea340e02c9e4c336b932540caef1ef = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6006c4cc51e61d99022eebe4ea28a5ef = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_99febe890de75b9bf56def8cfa70c08f = $(`<div id="html_99febe890de75b9bf56def8cfa70c08f" style="width: 100.0%; height: 100.0%;">Planta 3: Temuco – Cajón<br>Estado: Abierta</div>`)[0];
+                popup_6006c4cc51e61d99022eebe4ea28a5ef.setContent(html_99febe890de75b9bf56def8cfa70c08f);
+            
+        
+
+        marker_dbc43cb1d396798a2a04e887e3b2cbfe.bindPopup(popup_6006c4cc51e61d99022eebe4ea28a5ef)
+        ;
+
+        
+    
+    
+            marker_dbc43cb1d396798a2a04e887e3b2cbfe.bindTooltip(
+                `<div>
+                     Planta 3 (Abierta)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_dbc43cb1d396798a2a04e887e3b2cbfe.setIcon(icon_0eea340e02c9e4c336b932540caef1ef);
+            
+    
+            var poly_line_80c9542fa4744441fa8ff5bf81406170 = L.polyline(
+                [[-38.7397, -72.5901], [-38.6855, -72.536]],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_5ffa573e831047a51fe91f50c34fbe3c);
+        
+    
+            poly_line_80c9542fa4744441fa8ff5bf81406170.bindTooltip(
+                `<div>
+                     Flujo: 65.0 ton<br>Desde: Centro<br>Hacia: Temuco – Cajón
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_cb8bf6141142548dc48cf75bff03a2e5 = L.polyline(
+                [[-38.7554, -72.6189], [-38.6855, -72.536]],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_5ffa573e831047a51fe91f50c34fbe3c);
+        
+    
+            poly_line_cb8bf6141142548dc48cf75bff03a2e5.bindTooltip(
+                `<div>
+                     Flujo: 40.0 ton<br>Desde: Amanecer<br>Hacia: Temuco – Cajón
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_c3fbae86499322fff7bfab6f76243267 = L.polyline(
+                [[-38.7758, -72.7165], [-38.7705, -72.695]],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_5ffa573e831047a51fe91f50c34fbe3c);
+        
+    
+            poly_line_c3fbae86499322fff7bfab6f76243267.bindTooltip(
+                `<div>
+                     Flujo: 45.0 ton<br>Desde: Labranza<br>Hacia: Temuco – Labranza Mayor
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_f6828f081c75b900b84ec9ea045e864c = L.polyline(
+                [[-38.7208, -72.5768], [-38.7705, -72.695]],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_5ffa573e831047a51fe91f50c34fbe3c);
+        
+    
+            poly_line_f6828f081c75b900b84ec9ea045e864c.bindTooltip(
+                `<div>
+                     Flujo: 45.0 ton<br>Desde: Pueblo Nuevo<br>Hacia: Temuco – Labranza Mayor
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_6f28645865b8973cf5e54e5b525c9539 = L.polyline(
+                [[-38.7346, -72.6247], [-38.7705, -72.695]],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_5ffa573e831047a51fe91f50c34fbe3c);
+        
+    
+            poly_line_6f28645865b8973cf5e54e5b525c9539.bindTooltip(
+                `<div>
+                     Flujo: 35.0 ton<br>Desde: Pedro de Valdivia<br>Hacia: Temuco – Labranza Mayor
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_002d1af065cf212deb5a05339e7cba13 = L.polyline(
+                [[-38.7214, -72.6475], [-38.7705, -72.695]],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_5ffa573e831047a51fe91f50c34fbe3c);
+        
+    
+            poly_line_002d1af065cf212deb5a05339e7cba13.bindTooltip(
+                `<div>
+                     Flujo: 30.0 ton<br>Desde: Fundo El Carmen<br>Hacia: Temuco – Labranza Mayor
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_c106b450b63153602d200a837c7cac1f = L.polyline(
+                [[-38.7362, -72.6074], [-38.7705, -72.695]],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_5ffa573e831047a51fe91f50c34fbe3c);
+        
+    
+            poly_line_c106b450b63153602d200a837c7cac1f.bindTooltip(
+                `<div>
+                     Flujo: 30.0 ton<br>Desde: Poniente<br>Hacia: Temuco – Labranza Mayor
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_ac7bed4fdfba915104c42c4e705a6414 = L.polyline(
+                [[-38.7486, -72.5855], [-38.6855, -72.536]],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_5ffa573e831047a51fe91f50c34fbe3c);
+        
+    
+            poly_line_ac7bed4fdfba915104c42c4e705a6414.bindTooltip(
+                `<div>
+                     Flujo: 25.0 ton<br>Desde: Costanera del Cautín<br>Hacia: Temuco – Cajón
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>
