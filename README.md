@@ -38,7 +38,7 @@ El motor lógico de este proyecto diseña la red a través de:
 
 ### Parámetros Exógenos (Datos de la Realidad)
 *   **$W_i$**: Demanda diaria (toneladas) generada en el macrosector $i$.
-*   **$C_{ij}$**: Costo logístico de trasladar 1 tonelada desde $i$ hasta la planta $j$.
+*   **$C_{ij}$**: Costo logístico de trasladar 1 tonelada desde $i$ hasta la planta $j$ [CLP/ton].
 *   **$F_j$**: Costo fijo diario (amortización de infraestructura y operación base) de la planta $j$.
 *   **$Cap_j$**: Capacidad máxima de procesamiento diario (toneladas) de la planta $j$.
 
@@ -77,7 +77,7 @@ En `data/instancias.json` se programaron 10 escenarios que simulan variaciones r
 1.  **Escenario Base:** Operación normal de recolección (315 ton/día).
 2.  **Shock de Demanda:** Operativos "Chao Cachureos" disparan los flujos.
 3.  **Alza del Diésel:** Incremento logístico que fuerza descentralización.
-4.  **Desvío Orgánico:** Adopción masiva de composteras en *Fundo El Carmen*.
+4.  **Desvío Orgánico:** Adopción masiva de composteras en *Fundo El Carmen* y *Poniente* (demanda total baja de 315 → 294 ton/día).
 5.  **Contenedorización:** Mejora de eficiencia vehicular en puntos críticos.
 6.  **Subvención FNDR:** Terrenos caros reducen su *CAPEX* drásticamente por subsidio regional.
 7.  **Efecto NIMBY:** Sobrecosto de mitigación socioambiental en barrios residenciales periféricos.
@@ -109,8 +109,15 @@ Puede ejecutar el solver para todas las instancias y exportar los resultados a J
 ```bash
 python src/main.py --exportar
 ```
+> Si omite el nombre del archivo, los resultados se guardan automáticamente en `data/resultados.json`.  
+> También puede especificar un nombre distinto: `python src/main.py --exportar mi_run`
+
 > Opcionalmente, para resolver un solo escenario (ej. Instancia 5) con modo verboso (*solver logs* en tiempo real):
 > `python src/main.py --instancia 5 --verbose`
+
+> **Windows:** si la terminal muestra caracteres ilegibles, ejecute con:
+> `python -X utf8 src/main.py --exportar`
+> (el código intenta corregir la codificación automáticamente, pero la bandera `-X utf8` garantiza UTF-8 en toda la sesión).
 
 ### II. Generación de Visualizaciones Analíticas
 Una vez que `data/resultados.json` ha sido actualizado por el paso anterior, compile los mapas e infografías corriendo:
@@ -118,6 +125,13 @@ Una vez que `data/resultados.json` ha sido actualizado por el paso anterior, com
 python data/generar_graficos.py
 ```
 > Explore en la carpeta `/data/graficos/` las imágenes exportadas listas para reportes en formato IEEE o presentaciones municipales.
+
+### III. Generación de Mapas Interactivos (Folium)
+Para generar los mapas HTML con rutas logísticas georreferenciadas sobre Temuco, asegúrese de tener instalada la librería `folium` y ejecute:
+```bash
+python data/visualizador.py
+```
+> Los mapas se guardan en `data/mapas_resultados/` y pueden abrirse directamente en cualquier navegador web.
 
 ---
 **Autores:** Felipe Cubillos, Diego Gómez, Tomás Cárcamo  |  **Cátedra:** Métodos de Optimización (2-2025)

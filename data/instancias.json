@@ -2,21 +2,8 @@
   {
     "nombre": "Instancia 1: Escenario Base",
     "descripcion": "Condiciones estándar de operación con la estructura de costos y demandas promedio. Caso de control metodológico. Demanda total = 315 ton/día. Capacidad total = 700 ton/día.",
-    "I": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8
-    ],
-    "J": [
-      1,
-      2,
-      3
-    ],
+    "I": [1, 2, 3, 4, 5, 6, 7, 8],
+    "J": [1, 2, 3],
     "W": {
       "1": 65,
       "2": 40,
@@ -68,21 +55,8 @@
   {
     "nombre": "Instancia 2: Shock – Chao Cachureos",
     "descripcion": "Operativo masivo de erradicación de microbasurales concentrado en Amanecer y Costanera del Cautín. Demanda total = 450 ton/día. Supera capacidad individual de Cajón (400), forzando apertura de al menos dos plantas. Basado en el programa 'Chao Cachureos' de la DIMAO que extrajo 496 ton en 2024.",
-    "I": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8
-    ],
-    "J": [
-      1,
-      2,
-      3
-    ],
+    "I": [1, 2, 3, 4, 5, 6, 7, 8],
+    "J": [1, 2, 3],
     "W": {
       "1": 65,
       "2": 110,
@@ -134,21 +108,8 @@
   {
     "nombre": "Instancia 3: Alza del Diésel (+45%)",
     "descripcion": "Crisis de precios del combustible. Toda la matriz de costos de transporte C_ij se incrementa en un 45%. Los costos fijos F_j permanecen estables. Penaliza distancias largas y favorece la descentralización. Diésel base: 934,50 CLP/L [9]; con el shock simula ~1.355 CLP/L.",
-    "I": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8
-    ],
-    "J": [
-      1,
-      2,
-      3
-    ],
+    "I": [1, 2, 3, 4, 5, 6, 7, 8],
+    "J": [1, 2, 3],
     "W": {
       "1": 65,
       "2": 40,
@@ -199,22 +160,9 @@
   },
   {
     "nombre": "Instancia 4: Desvío Orgánico (Composteras)",
-    "descripcion": "Programa municipal de compostaje domiciliario reduce drásticamente la demanda de Fundo El Carmen (-55%) y Poniente (-15%). Demanda total = 284 ton/día. El 66,8% de los RSD de la región son materia orgánica [1]. Basado en las 2.500 composteras entregadas en Fundo El Carmen [11].",
-    "I": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8
-    ],
-    "J": [
-      1,
-      2,
-      3
-    ],
+    "descripcion": "Programa municipal de compostaje domiciliario reduce drásticamente la demanda de Fundo El Carmen (-55%) y Poniente (-15%). Demanda total = 294 ton/día. El 66,8% de los RSD de la región son materia orgánica [1]. Basado en las 2.500 composteras entregadas en Fundo El Carmen [11].",
+    "I": [1, 2, 3, 4, 5, 6, 7, 8],
+    "J": [1, 2, 3],
     "W": {
       "1": 65,
       "2": 40,
@@ -266,21 +214,8 @@
   {
     "nombre": "Instancia 5: Contenedorización",
     "descripcion": "Modernización de la recolección con 25.000 contenedores de 120 y 1.100 L. Reduce los costos de transporte en Costanera del Cautín (-30%) y Pedro de Valdivia (-20%) por eficiencia operativa (tiempos de parada, desgaste). Inversión > $1.300 M CLP regional [12].",
-    "I": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8
-    ],
-    "J": [
-      1,
-      2,
-      3
-    ],
+    "I": [1, 2, 3, 4, 5, 6, 7, 8],
+    "J": [1, 2, 3],
     "W": {
       "1": 65,
       "2": 40,
@@ -332,21 +267,8 @@
   {
     "nombre": "Instancia 6: Subsidio FNDR para Cajón",
     "descripcion": "El terreno de Cajón (j=3) obtiene subsidio gubernamental del 75% sobre su CAPEX a través de fondos FNDR. El costo fijo cae de $2.600.000 a $1.150.000 CLP/día, equiparándose a las plantas de Labranza. Demuestra cómo los instrumentos de financiamiento público dictan la geografía de las operaciones.",
-    "I": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8
-    ],
-    "J": [
-      1,
-      2,
-      3
-    ],
+    "I": [1, 2, 3, 4, 5, 6, 7, 8],
+    "J": [1, 2, 3],
     "W": {
       "1": 65,
       "2": 40,
@@ -398,21 +320,8 @@
   {
     "nombre": "Instancia 7: Efecto NIMBY en Labranza",
     "descripcion": "Conflicto socioambiental por crecimiento residencial de Labranza. Los costos fijos de las plantas en Labranza se duplican por sistemas de biometanización hermética, encapsulamiento acústico e indemnizaciones viales. F_1: ×2.0, F_2: ×2.24. Cajón mantiene su costo (vocación industrial pura).",
-    "I": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8
-    ],
-    "J": [
-      1,
-      2,
-      3
-    ],
+    "I": [1, 2, 3, 4, 5, 6, 7, 8],
+    "J": [1, 2, 3],
     "W": {
       "1": 65,
       "2": 40,
@@ -464,21 +373,8 @@
   {
     "nombre": "Instancia 8: Crecimiento Poblacional (+18%)",
     "descripcion": "Proyección urbanística agresiva a 5 años basada en PLADECO e INE. Demanda transversalmente inflada (+18%). Pedro de Valdivia pasa de 35 a 45 ton/día; Pueblo Nuevo de 45 a 58 ton/día. Demanda total ≈ 375 ton/día, acercándose al límite técnico de Cajón (400 ton/día). Margen de seguridad de 25 ton.",
-    "I": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8
-    ],
-    "J": [
-      1,
-      2,
-      3
-    ],
+    "I": [1, 2, 3, 4, 5, 6, 7, 8],
+    "J": [1, 2, 3],
     "W": {
       "1": 73,
       "2": 46,
@@ -530,21 +426,8 @@
   {
     "nombre": "Instancia 9: Cumplimiento Ley REP (Reciclaje)",
     "descripcion": "Segregación en origen por cumplimiento de la Ley 20.920 (REP). El 40% de la demanda en Centro y Poniente (macrosectores de altos ingresos) se desvía a puntos limpios y recicladores de base. W_1: 65→39, W_7: 30→18 ton/día. Demanda total = 277 ton/día. Meta regional: 62,2% reciclaje [1].",
-    "I": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8
-    ],
-    "J": [
-      1,
-      2,
-      3
-    ],
+    "I": [1, 2, 3, 4, 5, 6, 7, 8],
+    "J": [1, 2, 3],
     "W": {
       "1": 39,
       "2": 40,
@@ -596,21 +479,8 @@
   {
     "nombre": "Instancia 10: Falla Crítica en Cajón",
     "descripcion": "Falla catastrófica en el sistema hidráulico de compactación de la planta de Cajón (j=3). Capacidad degradada de 400 a 130 ton/día. Demanda inalterada en 315 ton/día. Déficit de 185 ton. La planta Labranza Menor (Cap=100) no cubre sola el déficit. Fuerza activación de Labranza Mayor (Cap=200) como mínimo.",
-    "I": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8
-    ],
-    "J": [
-      1,
-      2,
-      3
-    ],
+    "I": [1, 2, 3, 4, 5, 6, 7, 8],
+    "J": [1, 2, 3],
     "W": {
       "1": 65,
       "2": 40,

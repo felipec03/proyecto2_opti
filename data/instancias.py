@@ -91,31 +91,31 @@ UBICACIONES_CANDIDATAS = {
 # --- Demanda base W_i [ton/día] ---
 # Fuentes: [2] población 292.518, [4] ~315 ton/día comunal, [6] PLADECO
 W_BASE = {
-    1: 65,   # Centro
-    2: 40,   # Amanecer
-    3: 45,   # Labranza
-    4: 45,   # Pueblo Nuevo
-    5: 35,   # Pedro de Valdivia
-    6: 30,   # Fundo El Carmen
-    7: 30,   # Poniente
-    8: 25,   # Costanera del Cautín
+    1: 65,  # Centro
+    2: 40,  # Amanecer
+    3: 45,  # Labranza
+    4: 45,  # Pueblo Nuevo
+    5: 35,  # Pedro de Valdivia
+    6: 30,  # Fundo El Carmen
+    7: 30,  # Poniente
+    8: 25,  # Costanera del Cautín
 }
 # Total: 315 ton/día  ≈  102.500–115.000 ton/año
 
 # --- Costos fijos F_j [CLP/día] ---
 # Fuentes: [5] avalúos fiscales, amortización CAPEX a 15 años + OPEX base
 F_BASE = {
-    1: 1_800_000,   # Labranza Mayor
-    2:   850_000,   # Labranza Menor
-    3: 2_600_000,   # Cajón
+    1: 1_800_000,  # Labranza Mayor
+    2: 850_000,  # Labranza Menor
+    3: 2_600_000,  # Cajón
 }
 
 # --- Capacidades Cap_j [ton/día] ---
 # Fuentes: [5] análisis espacial de superficies disponibles
 CAP_BASE = {
-    1: 200,   # Labranza Mayor
-    2: 100,   # Labranza Menor
-    3: 400,   # Cajón
+    1: 200,  # Labranza Mayor
+    2: 100,  # Labranza Menor
+    3: 400,  # Cajón
 }
 
 # --- Matriz de costos de transporte C_ij [CLP/ton] ---
@@ -150,14 +150,30 @@ CAP_BASE = {
 
 C_BASE = {
     # (i, j): CLP/ton
-    (1, 1): 6_028,  (1, 2): 5_955,  (1, 3): 5_470,
-    (2, 1): 5_764,  (2, 2): 5_691,  (2, 3): 5_290,
-    (3, 1): 4_837,  (3, 2): 4_763,  (3, 3): 6_397,
-    (4, 1): 5_607,  (4, 2): 5_532,  (4, 3): 5_659,
-    (5, 1): 5_343,  (5, 2): 5_290,  (5, 3): 5_818,
-    (6, 1): 6_186,  (6, 2): 6_112,  (6, 3): 5_976,
-    (7, 1): 5_659,  (7, 2): 5_607,  (7, 3): 5_923,
-    (8, 1): 5_870,  (8, 2): 5_796,  (8, 3): 5_132,
+    (1, 1): 6_028,
+    (1, 2): 5_955,
+    (1, 3): 5_470,
+    (2, 1): 5_764,
+    (2, 2): 5_691,
+    (2, 3): 5_290,
+    (3, 1): 4_837,
+    (3, 2): 4_763,
+    (3, 3): 6_397,
+    (4, 1): 5_607,
+    (4, 2): 5_532,
+    (4, 3): 5_659,
+    (5, 1): 5_343,
+    (5, 2): 5_290,
+    (5, 3): 5_818,
+    (6, 1): 6_186,
+    (6, 2): 6_112,
+    (6, 3): 5_976,
+    (7, 1): 5_659,
+    (7, 2): 5_607,
+    (7, 3): 5_923,
+    (8, 1): 5_870,
+    (8, 2): 5_796,
+    (8, 3): 5_132,
 }
 
 
@@ -165,18 +181,19 @@ C_BASE = {
 #  FUNCIÓN AUXILIAR PARA CONSTRUIR UNA INSTANCIA
 # ══════════════════════════════════════════════════════════════════════════════
 
+
 def construir_instancia(nombre, descripcion, W, C, F, Cap, fuentes):
     """Devuelve un diccionario completo con los datos de una instancia."""
     return {
-        "nombre":       nombre,
-        "descripcion":  descripcion,
-        "I":            list(W.keys()),
-        "J":            list(F.keys()),
-        "W":            dict(W),
-        "C":            dict(C),
-        "F":            dict(F),
-        "Cap":          dict(Cap),
-        "fuentes":      fuentes,
+        "nombre": nombre,
+        "descripcion": descripcion,
+        "I": list(W.keys()),
+        "J": list(F.keys()),
+        "W": dict(W),
+        "C": dict(C),
+        "F": dict(F),
+        "Cap": dict(Cap),
+        "fuentes": fuentes,
     }
 
 
@@ -189,17 +206,17 @@ def construir_instancia(nombre, descripcion, W, C, F, Cap, fuentes):
 #  Fuentes: [1][2][4][5][6][8][9]
 
 instancia_01 = construir_instancia(
-    nombre      = "Instancia 1: Escenario Base",
-    descripcion = (
+    nombre="Instancia 1: Escenario Base",
+    descripcion=(
         "Condiciones estándar de operación con la estructura de costos y "
         "demandas promedio. Caso de control metodológico. "
         "Demanda total = 315 ton/día. Capacidad total = 700 ton/día."
     ),
-    W       = dict(W_BASE),
-    C       = dict(C_BASE),
-    F       = dict(F_BASE),
-    Cap     = dict(CAP_BASE),
-    fuentes = "[1][2][4][5][6][8][9]",
+    W=dict(W_BASE),
+    C=dict(C_BASE),
+    F=dict(F_BASE),
+    Cap=dict(CAP_BASE),
+    fuentes="[1][2][4][5][6][8][9]",
 )
 
 
@@ -214,23 +231,23 @@ instancia_01 = construir_instancia(
 #  Fuentes: [1][10] – TemucoDiario "Chao Cachureos" 496 ton/2024.
 
 W_02 = dict(W_BASE)
-W_02[2] = 110   # Amanecer: shock +70
-W_02[8] = 90    # Costanera: shock +65
+W_02[2] = 110  # Amanecer: shock +70
+W_02[8] = 90  # Costanera: shock +65
 
 instancia_02 = construir_instancia(
-    nombre      = "Instancia 2: Shock – Chao Cachureos",
-    descripcion = (
+    nombre="Instancia 2: Shock – Chao Cachureos",
+    descripcion=(
         "Operativo masivo de erradicación de microbasurales concentrado en "
         "Amanecer y Costanera del Cautín. Demanda total = 450 ton/día. "
         "Supera capacidad individual de Cajón (400), forzando apertura de "
         "al menos dos plantas. Basado en el programa 'Chao Cachureos' de "
         "la DIMAO que extrajo 496 ton en 2024."
     ),
-    W       = W_02,
-    C       = dict(C_BASE),
-    F       = dict(F_BASE),
-    Cap     = dict(CAP_BASE),
-    fuentes = "[1][10]",
+    W=W_02,
+    C=dict(C_BASE),
+    F=dict(F_BASE),
+    Cap=dict(CAP_BASE),
+    fuentes="[1][10]",
 )
 
 
@@ -239,26 +256,30 @@ instancia_02 = construir_instancia(
 # ══════════════════════════════════════════════════════════════════════════════
 #  Crisis de precios de combustible: toda la matriz C_ij sube un 45%.
 #  Los costos fijos F_j permanecen estables (contratos a largo plazo).
-#  Resultado esperado: descentralización extrema (abrir 3 plantas).
+#  Resultado esperado: consolidación en Cajón (J3). Los costos fijos son
+#  tan altos (~1.8–2.6 M CLP/día) que el ahorro marginal de transporte
+#  por abrir una segunda planta (≈ 167.000 CLP/día máx.) no compensa
+#  el CAPEX adicional. El alza del diésel encarece los trayectos pero no
+#  cambia la jerarquía de costos fijos vs. variables a esta escala.
 #  Fuentes: [9][1] – GlobalPetrolPrices diésel mar-2026: ~934,50 CLP/L.
 #  Históricamente ENAP ha anunciado alzas de hasta $20/L de golpe [15].
 
 C_03 = {k: round(v * 1.45) for k, v in C_BASE.items()}
 
 instancia_03 = construir_instancia(
-    nombre      = "Instancia 3: Alza del Diésel (+45%)",
-    descripcion = (
+    nombre="Instancia 3: Alza del Diésel (+45%)",
+    descripcion=(
         "Crisis de precios del combustible. Toda la matriz de costos de "
         "transporte C_ij se incrementa en un 45%. Los costos fijos F_j "
         "permanecen estables. Penaliza distancias largas y favorece la "
         "descentralización. Diésel base: 934,50 CLP/L [9]; con el shock "
         "simula ~1.355 CLP/L."
     ),
-    W       = dict(W_BASE),
-    C       = C_03,
-    F       = dict(F_BASE),
-    Cap     = dict(CAP_BASE),
-    fuentes = "[1][9][15]",
+    W=dict(W_BASE),
+    C=C_03,
+    F=dict(F_BASE),
+    Cap=dict(CAP_BASE),
+    fuentes="[1][9][15]",
 )
 
 
@@ -268,28 +289,28 @@ instancia_03 = construir_instancia(
 #  Impacto de distribución masiva de composteras.
 #  W_6 (Fundo El Carmen): 30 → 13.5 ton/día  (–55%)
 #  W_7 (Poniente):        30 → 25.5 ton/día  (–15%)
-#  Demanda total:         315 → 284 ton/día
+#  Demanda total:         315 → 294 ton/día  (reducción de 21 ton/día)
 #  Relaja restricciones de capacidad.
 #  Fuentes: [1][11] – 2.500 composteras entregadas en Fdo. El Carmen.
 
 W_04 = dict(W_BASE)
-W_04[6] = 13.5   # Fundo El Carmen: -55%
-W_04[7] = 25.5   # Poniente: -15%
+W_04[6] = 13.5  # Fundo El Carmen: -55%
+W_04[7] = 25.5  # Poniente: -15%
 
 instancia_04 = construir_instancia(
-    nombre      = "Instancia 4: Desvío Orgánico (Composteras)",
-    descripcion = (
+    nombre="Instancia 4: Desvío Orgánico (Composteras)",
+    descripcion=(
         "Programa municipal de compostaje domiciliario reduce drásticamente "
         "la demanda de Fundo El Carmen (-55%) y Poniente (-15%). "
-        "Demanda total = 284 ton/día. El 66,8% de los RSD de la región "
+        "Demanda total = 294 ton/día. El 66,8% de los RSD de la región "
         "son materia orgánica [1]. Basado en las 2.500 composteras "
         "entregadas en Fundo El Carmen [11]."
     ),
-    W       = W_04,
-    C       = dict(C_BASE),
-    F       = dict(F_BASE),
-    Cap     = dict(CAP_BASE),
-    fuentes = "[1][11]",
+    W=W_04,
+    C=dict(C_BASE),
+    F=dict(F_BASE),
+    Cap=dict(CAP_BASE),
+    fuentes="[1][11]",
 )
 
 
@@ -304,23 +325,23 @@ instancia_04 = construir_instancia(
 
 C_05 = dict(C_BASE)
 for j in [1, 2, 3]:
-    C_05[(8, j)] = round(C_BASE[(8, j)] * 0.70)   # Costanera  –30%
-    C_05[(5, j)] = round(C_BASE[(5, j)] * 0.80)   # P. Valdivia –20%
+    C_05[(8, j)] = round(C_BASE[(8, j)] * 0.70)  # Costanera  –30%
+    C_05[(5, j)] = round(C_BASE[(5, j)] * 0.80)  # P. Valdivia –20%
 
 instancia_05 = construir_instancia(
-    nombre      = "Instancia 5: Contenedorización",
-    descripcion = (
+    nombre="Instancia 5: Contenedorización",
+    descripcion=(
         "Modernización de la recolección con 25.000 contenedores de 120 "
         "y 1.100 L. Reduce los costos de transporte en Costanera del "
         "Cautín (-30%) y Pedro de Valdivia (-20%) por eficiencia "
         "operativa (tiempos de parada, desgaste). Inversión > $1.300 M "
         "CLP regional [12]."
     ),
-    W       = dict(W_BASE),
-    C       = C_05,
-    F       = dict(F_BASE),
-    Cap     = dict(CAP_BASE),
-    fuentes = "[1][12]",
+    W=dict(W_BASE),
+    C=C_05,
+    F=dict(F_BASE),
+    Cap=dict(CAP_BASE),
+    fuentes="[1][12]",
 )
 
 
@@ -333,22 +354,22 @@ instancia_05 = construir_instancia(
 #  Fuentes: [1][5] – Avalúo Cajón $408 M CLP; política FNDR.
 
 F_06 = dict(F_BASE)
-F_06[3] = 1_150_000   # Cajón con subsidio 75% CAPEX
+F_06[3] = 1_150_000  # Cajón con subsidio 75% CAPEX
 
 instancia_06 = construir_instancia(
-    nombre      = "Instancia 6: Subsidio FNDR para Cajón",
-    descripcion = (
+    nombre="Instancia 6: Subsidio FNDR para Cajón",
+    descripcion=(
         "El terreno de Cajón (j=3) obtiene subsidio gubernamental del "
         "75% sobre su CAPEX a través de fondos FNDR. El costo fijo cae "
         "de $2.600.000 a $1.150.000 CLP/día, equiparándose a las plantas "
         "de Labranza. Demuestra cómo los instrumentos de financiamiento "
         "público dictan la geografía de las operaciones."
     ),
-    W       = dict(W_BASE),
-    C       = dict(C_BASE),
-    F       = F_06,
-    Cap     = dict(CAP_BASE),
-    fuentes = "[1][5]",
+    W=dict(W_BASE),
+    C=dict(C_BASE),
+    F=F_06,
+    Cap=dict(CAP_BASE),
+    fuentes="[1][5]",
 )
 
 
@@ -364,23 +385,23 @@ instancia_06 = construir_instancia(
 #  Fuentes: [1][7][8] – Crecimiento demográfico Labranza.
 
 F_07 = dict(F_BASE)
-F_07[1] = 3_600_000   # Labranza Mayor + mitigación NIMBY
-F_07[2] = 1_900_000   # Labranza Menor + mitigación NIMBY
+F_07[1] = 3_600_000  # Labranza Mayor + mitigación NIMBY
+F_07[2] = 1_900_000  # Labranza Menor + mitigación NIMBY
 
 instancia_07 = construir_instancia(
-    nombre      = "Instancia 7: Efecto NIMBY en Labranza",
-    descripcion = (
+    nombre="Instancia 7: Efecto NIMBY en Labranza",
+    descripcion=(
         "Conflicto socioambiental por crecimiento residencial de Labranza. "
         "Los costos fijos de las plantas en Labranza se duplican por "
         "sistemas de biometanización hermética, encapsulamiento acústico "
         "e indemnizaciones viales. F_1: ×2.0, F_2: ×2.24. "
         "Cajón mantiene su costo (vocación industrial pura)."
     ),
-    W       = dict(W_BASE),
-    C       = dict(C_BASE),
-    F       = F_07,
-    Cap     = dict(CAP_BASE),
-    fuentes = "[1][7][8]",
+    W=dict(W_BASE),
+    C=dict(C_BASE),
+    F=F_07,
+    Cap=dict(CAP_BASE),
+    fuentes="[1][7][8]",
 )
 
 
@@ -400,32 +421,32 @@ factor_18 = 1.18
 for i, w in W_BASE.items():
     W_08[i] = round(w * factor_18, 1)
 # Ajustes puntuales indicados en el documento:
-W_08[5] = 45    # Pedro de Valdivia (explícitamente 35→45)
-W_08[4] = 58    # Pueblo Nuevo (explícitamente 45→58)
+W_08[5] = 45  # Pedro de Valdivia (explícitamente 35→45)
+W_08[4] = 58  # Pueblo Nuevo (explícitamente 45→58)
 # Verificar total ≈ 375
 # Centro 76.7, Amanecer 47.2, Labranza 53.1, PNuevo 58, PValdivia 45,
 # FCarmen 35.4, Poniente 35.4, Costanera 29.5 = ~380.3 → ajustar a ~375
-W_08[1] = 73    # Centro ajustado
-W_08[2] = 46    # Amanecer ajustado
-W_08[3] = 52    # Labranza ajustado
-W_08[6] = 35    # Fundo El Carmen
-W_08[7] = 35    # Poniente
-W_08[8] = 31    # Costanera
+W_08[1] = 73  # Centro ajustado
+W_08[2] = 46  # Amanecer ajustado
+W_08[3] = 52  # Labranza ajustado
+W_08[6] = 35  # Fundo El Carmen
+W_08[7] = 35  # Poniente
+W_08[8] = 31  # Costanera
 
 instancia_08 = construir_instancia(
-    nombre      = "Instancia 8: Crecimiento Poblacional (+18%)",
-    descripcion = (
+    nombre="Instancia 8: Crecimiento Poblacional (+18%)",
+    descripcion=(
         "Proyección urbanística agresiva a 5 años basada en PLADECO e INE. "
         "Demanda transversalmente inflada (+18%). Pedro de Valdivia pasa "
         "de 35 a 45 ton/día; Pueblo Nuevo de 45 a 58 ton/día. "
         "Demanda total ≈ 375 ton/día, acercándose al límite técnico de "
         "Cajón (400 ton/día). Margen de seguridad de 25 ton."
     ),
-    W       = W_08,
-    C       = dict(C_BASE),
-    F       = dict(F_BASE),
-    Cap     = dict(CAP_BASE),
-    fuentes = "[2][3][7]",
+    W=W_08,
+    C=dict(C_BASE),
+    F=dict(F_BASE),
+    Cap=dict(CAP_BASE),
+    fuentes="[2][3][7]",
 )
 
 
@@ -441,23 +462,23 @@ instancia_08 = construir_instancia(
 #  Fuentes: [1][13]
 
 W_09 = dict(W_BASE)
-W_09[1] = 39    # Centro –40%
-W_09[7] = 18    # Poniente –40%
+W_09[1] = 39  # Centro –40%
+W_09[7] = 18  # Poniente –40%
 
 instancia_09 = construir_instancia(
-    nombre      = "Instancia 9: Cumplimiento Ley REP (Reciclaje)",
-    descripcion = (
+    nombre="Instancia 9: Cumplimiento Ley REP (Reciclaje)",
+    descripcion=(
         "Segregación en origen por cumplimiento de la Ley 20.920 (REP). "
         "El 40% de la demanda en Centro y Poniente (macrosectores de "
         "altos ingresos) se desvía a puntos limpios y recicladores de "
         "base. W_1: 65→39, W_7: 30→18 ton/día. "
         "Demanda total = 277 ton/día. Meta regional: 62,2% reciclaje [1]."
     ),
-    W       = W_09,
-    C       = dict(C_BASE),
-    F       = dict(F_BASE),
-    Cap     = dict(CAP_BASE),
-    fuentes = "[1][13]",
+    W=W_09,
+    C=dict(C_BASE),
+    F=dict(F_BASE),
+    Cap=dict(CAP_BASE),
+    fuentes="[1][13]",
 )
 
 
@@ -472,22 +493,22 @@ instancia_09 = construir_instancia(
 #  Fuentes: [1]
 
 CAP_10 = dict(CAP_BASE)
-CAP_10[3] = 130   # Cajón degradada
+CAP_10[3] = 130  # Cajón degradada
 
 instancia_10 = construir_instancia(
-    nombre      = "Instancia 10: Falla Crítica en Cajón",
-    descripcion = (
+    nombre="Instancia 10: Falla Crítica en Cajón",
+    descripcion=(
         "Falla catastrófica en el sistema hidráulico de compactación de "
         "la planta de Cajón (j=3). Capacidad degradada de 400 a 130 "
         "ton/día. Demanda inalterada en 315 ton/día. Déficit de 185 ton. "
         "La planta Labranza Menor (Cap=100) no cubre sola el déficit. "
         "Fuerza activación de Labranza Mayor (Cap=200) como mínimo."
     ),
-    W       = dict(W_BASE),
-    C       = dict(C_BASE),
-    F       = dict(F_BASE),
-    Cap     = CAP_10,
-    fuentes = "[1]",
+    W=dict(W_BASE),
+    C=dict(C_BASE),
+    F=dict(F_BASE),
+    Cap=CAP_10,
+    fuentes="[1]",
 )
 
 
@@ -512,6 +533,7 @@ INSTANCIAS = [
 # ══════════════════════════════════════════════════════════════════════════════
 #  UTILIDADES: Imprimir resumen y validar factibilidad
 # ══════════════════════════════════════════════════════════════════════════════
+
 
 def imprimir_resumen(inst):
     """Imprime un resumen legible de la instancia."""
@@ -539,7 +561,7 @@ def imprimir_resumen(inst):
     # Tabla de demanda
     print("  Demanda W_i [ton/día]:")
     print(f"  {'i':>3}  {'Macrosector':<50}  {'W_i':>8}")
-    print(f"  {'---':>3}  {'-'*50}  {'--------':>8}")
+    print(f"  {'---':>3}  {'-' * 50}  {'--------':>8}")
     for i in I:
         nombre_ms = MACROSECTORES.get(i, f"Macrosector {i}")
         print(f"  {i:>3}  {nombre_ms:<50}  {W[i]:>8.1f}")
@@ -549,7 +571,7 @@ def imprimir_resumen(inst):
     # Tabla de plantas
     print("  Plantas candidatas:")
     print(f"  {'j':>3}  {'Ubicación':<55}  {'F_j':>12}  {'Cap_j':>8}")
-    print(f"  {'---':>3}  {'-'*55}  {'-'*12}  {'--------':>8}")
+    print(f"  {'---':>3}  {'-' * 55}  {'-' * 12}  {'--------':>8}")
     for j in J:
         nombre_ub = UBICACIONES_CANDIDATAS.get(j, f"Planta {j}")
         nombre_corto = nombre_ub[:55]
@@ -560,13 +582,13 @@ def imprimir_resumen(inst):
     print("  Matriz C_ij [CLP/ton]:")
     header = f"  {'i\\j':>5}"
     for j in J:
-        header += f"  {'J'+str(j):>10}"
+        header += f"  {'J' + str(j):>10}"
     print(header)
     print(f"  {'-----':>5}" + f"  {'----------':>10}" * len(J))
     for i in I:
         row = f"  {i:>5}"
         for j in J:
-            row += f"  {C[(i,j)]:>10,}"
+            row += f"  {C[(i, j)]:>10,}"
         print(row)
     print()
     print(f"  Fuentes: {inst['fuentes']}")

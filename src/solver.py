@@ -20,35 +20,36 @@ Fecha:  Marzo 2026
 Ref.:   López Marín (2024), U. de Chile – sección 7.1.1
 """
 
+import time
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple
 
 import pulp
-import time
-
 
 # ══════════════════════════════════════════════════════════════════════════════
 #  ESTRUCTURA DE DATOS PARA RESULTADOS
 # ══════════════════════════════════════════════════════════════════════════════
 
+
 @dataclass
 class ResultadoCFLP:
     """Resultado de la resolución de una instancia CFLP."""
 
-    nombre: str                               # Nombre de la instancia
-    estado: str                               # "Optimal", "Infeasible", etc.
-    valor_objetivo: Optional[float] = None    # Valor de la función objetivo [CLP/día]
-    tiempo_segundos: float = 0.0              # Tiempo de resolución [s]
-    solver_utilizado: str = ""                 # "CPLEX_CMD" o "PULP_CBC_CMD"
-    plantas_abiertas: Dict[int, bool] = field(default_factory=dict)    # Y_j
-    flujos: Dict[Tuple[int, int], float] = field(default_factory=dict) # X_ij
-    costo_fijo_total: float = 0.0             # Σ F_j · Y_j
-    costo_transporte_total: float = 0.0       # Σ C_ij · X_ij
+    nombre: str  # Nombre de la instancia
+    estado: str  # "Optimal", "Infeasible", etc.
+    valor_objetivo: Optional[float] = None  # Valor de la función objetivo [CLP/día]
+    tiempo_segundos: float = 0.0  # Tiempo de resolución [s]
+    solver_utilizado: str = ""  # "CPLEX_CMD" o "PULP_CBC_CMD"
+    plantas_abiertas: Dict[int, bool] = field(default_factory=dict)  # Y_j
+    flujos: Dict[Tuple[int, int], float] = field(default_factory=dict)  # X_ij
+    costo_fijo_total: float = 0.0  # Σ F_j · Y_j
+    costo_transporte_total: float = 0.0  # Σ C_ij · X_ij
 
 
 # ══════════════════════════════════════════════════════════════════════════════
 #  SELECCIÓN DEL SOLVER
 # ══════════════════════════════════════════════════════════════════════════════
+
 
 def obtener_solver(tiempo_limite: int = 300, verbose: bool = False):
     """
@@ -66,24 +67,25 @@ def obtener_solver(tiempo_limite: int = 300, verbose: bool = False):
     solver : pulp solver
     nombre : str
     """
-    msg = 1 if verbose else 0
-
+    # PuLP acepta bool para msg (True = mostrar log, False = silencioso)
+    # Usar verbose directamente evita el type error de Literal[0,1] vs bool.
     # Intentar CPLEX primero
     try:
-        cplex_solver = pulp.CPLEX_CMD(msg=msg, timeLimit=tiempo_limite)
+        cplex_solver = pulp.CPLEX_CMD(msg=verbose, timeLimit=tiempo_limite)
         if cplex_solver.available():
             return cplex_solver, "CPLEX_CMD"
     except Exception:
         pass
 
     # Fallback a CBC (incluido con PuLP)
-    cbc_solver = pulp.PULP_CBC_CMD(msg=msg, timeLimit=tiempo_limite)
+    cbc_solver = pulp.PULP_CBC_CMD(msg=verbose, timeLimit=tiempo_limite)
     return cbc_solver, "PULP_CBC_CMD"
 
 
 # ══════════════════════════════════════════════════════════════════════════════
 #  FUNCIÓN PRINCIPAL DE RESOLUCIÓN
 # ══════════════════════════════════════════════════════════════════════════════
+
 
 def resolver_cflp(
     nombre: str,
@@ -134,33 +136,31 @@ def resolver_cflp(
     Y = pulp.LpVariable.dicts("Y", J, cat=pulp.LpBinary)
 
     #   X_ij ≥ 0: flujo de residuos de i a j [ton/día]
-    X = pulp.LpVariable.dicts("X", [(i, j) for i in I for j in J],
-                              lowBound=0, cat=pulp.LpContinuous)
+    X = pulp.LpVariable.dicts(
+        "X", [(i, j) for i in I for j in J], lowBound=0, cat=pulp.LpContinuous
+    )
 
     # ── 3. Función objetivo ───────────────────────────────────────────────
     #   min  Σ_j F_j · Y_j  +  Σ_i Σ_j C_ij · X_ij
     prob += (
-        pulp.lpSum(F[j] * Y[j] for j in J) +
-        pulp.lpSum(C[(i, j)] * X[(i, j)] for i in I for j in J)
-    ), "Costo_Total"
+        (
+            pulp.lpSum(F[j] * Y[j] for j in J)
+            + pulp.lpSum(C[(i, j)] * X[(i, j)] for i in I for j in J)
+        ),
+        "Costo_Total",
+    )
 
     # ── 4. Restricciones ──────────────────────────────────────────────────
 
     # (R1) Satisfacción integral de la demanda:
     #      Σ_j X_ij = W_i   ∀ i ∈ I
     for i in I:
-        prob += (
-            pulp.lpSum(X[(i, j)] for j in J) == W[i],
-            f"Demanda_{i}"
-        )
+        prob += (pulp.lpSum(X[(i, j)] for j in J) == W[i], f"Demanda_{i}")
 
     # (R2) Límite de capacidad y activación lógica (Big-M):
     #      Σ_i X_ij ≤ Cap_j · Y_j   ∀ j ∈ J
     for j in J:
-        prob += (
-            pulp.lpSum(X[(i, j)] for i in I) <= Cap[j] * Y[j],
-            f"Capacidad_{j}"
-        )
+        prob += (pulp.lpSum(X[(i, j)] for i in I) <= Cap[j] * Y[j], f"Capacidad_{j}")
 
     # (R3) y (R4) están implícitas en la definición de las variables.
 
@@ -183,11 +183,17 @@ def resolver_cflp(
     )
 
     if estado == "Optimal":
-        resultado.valor_objetivo = round(pulp.value(prob.objective), 2)
+        obj_val = pulp.value(prob.objective)
+        resultado.valor_objetivo = round(obj_val, 2) if obj_val is not None else 0.0  # type: ignore[arg-type]
 
         # Plantas abiertas
+        # NOTA: CPLEX puede devolver valores como 0.9999999999999998 en lugar de 1.0
+        # exacto por tolerancias de punto flotante del solver MIP. Usar round() en
+        # lugar de int() para una extracción robusta que funcione con CPLEX y CBC.
         for j in J:
-            resultado.plantas_abiertas[j] = int(Y[j].varValue) == 1
+            # float() fuerza el tipo a float antes de round(), evitando que el
+            # type-checker se confunda con LpAffineExpression | float | None.
+            resultado.plantas_abiertas[j] = round(float(Y[j].varValue or 0)) == 1  # type: ignore[arg-type]
 
         # Flujos de asignación
         for i in I:
@@ -197,11 +203,14 @@ def resolver_cflp(
                     resultado.flujos[(i, j)] = round(val, 4)
 
         # Desglose de costos
+        # Se calcula directamente desde los valores LP redondeados para evitar
+        # que errores de extracción de Y_j propaguen al desglose de costos.
         resultado.costo_fijo_total = round(
-            sum(F[j] for j in J if resultado.plantas_abiertas.get(j, False)), 2
+            sum(F[j] * round(float(Y[j].varValue or 0)) for j in J),  # type: ignore[arg-type]
+            2,
         )
         resultado.costo_transporte_total = round(
-            resultado.valor_objetivo - resultado.costo_fijo_total, 2
+            (resultado.valor_objetivo or 0.0) - resultado.costo_fijo_total, 2
         )
 
     return resultado
@@ -248,7 +257,7 @@ def imprimir_resultado(res: ResultadoCFLP) -> None:
         print(f"  ⚠ No se encontró solución óptima.")
         print()
         return
-    
+
     print(f"  ┌─────────────────────────────────────────────┐")
     print(f"  │  Valor F. Objetivo:  {res.valor_objetivo:>16,.2f} CLP/día │")
     print(f"  │  Costo Fijo Total:   {res.costo_fijo_total:>16,.2f} CLP/día │")
@@ -270,10 +279,10 @@ def imprimir_resultado(res: ResultadoCFLP) -> None:
         print("  Flujos X_ij [ton/día]:")
         header = f"  {'Macrosector':<25}"
         for j in plantas_activas:
-            header += f"  {'J'+str(j):>10}"
+            header += f"  {'J' + str(j):>10}"
         header += f"  {'Total':>10}"
         print(header)
-        print(f"  {'-'*25}" + f"  {'-'*10}" * (len(plantas_activas) + 1))
+        print(f"  {'-' * 25}" + f"  {'-' * 10}" * (len(plantas_activas) + 1))
 
         for i in sorted(set(k[0] for k in res.flujos.keys())):
             nombre_ms = MACROSECTORES.get(i, f"Sector {i}")
@@ -293,7 +302,7 @@ def imprimir_resultado(res: ResultadoCFLP) -> None:
             row_total += f"  {total_col:>10.2f}"
         gran_total = sum(res.flujos.values())
         row_total += f"  {gran_total:>10.2f}"
-        print(f"  {'-'*25}" + f"  {'-'*10}" * (len(plantas_activas) + 1))
+        print(f"  {'-' * 25}" + f"  {'-' * 10}" * (len(plantas_activas) + 1))
         print(row_total)
 
     print()

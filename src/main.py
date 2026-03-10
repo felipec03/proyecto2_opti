@@ -22,16 +22,24 @@ import os
 import sys
 from pathlib import Path
 
+# Forzar UTF-8 en stdout/stderr para que los caracteres Unicode (━, █, etc.)
+# se muestren correctamente en terminales Windows con codificación CP1252.
+if sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
+    import io
+
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
+
 # Agregar el directorio raíz del proyecto al path
 PROYECTO_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROYECTO_DIR))
 
-from src.solver import resolver_cflp, imprimir_resultado
-
+from src.solver import imprimir_resultado, resolver_cflp
 
 # ══════════════════════════════════════════════════════════════════════════════
 #  CARGA DE DATOS
 # ══════════════════════════════════════════════════════════════════════════════
+
 
 def cargar_instancias(ruta_json: str) -> list:
     """
@@ -53,13 +61,10 @@ def cargar_instancias(ruta_json: str) -> list:
 
     for inst in datos:
         # Convertir claves de C de "i,j" (string) a tuplas (int, int)
-        inst["C"] = {
-            tuple(map(int, k.split(","))): v
-            for k, v in inst["C"].items()
-        }
+        inst["C"] = {tuple(map(int, k.split(","))): v for k, v in inst["C"].items()}
         # Convertir claves de W, F, Cap de string a int (JSON solo permite str keys)
-        inst["W"]   = {int(k): v for k, v in inst["W"].items()}
-        inst["F"]   = {int(k): v for k, v in inst["F"].items()}
+        inst["W"] = {int(k): v for k, v in inst["W"].items()}
+        inst["F"] = {int(k): v for k, v in inst["F"].items()}
         inst["Cap"] = {int(k): v for k, v in inst["Cap"].items()}
 
     return datos
@@ -68,6 +73,7 @@ def cargar_instancias(ruta_json: str) -> list:
 # ══════════════════════════════════════════════════════════════════════════════
 #  RESOLUCIÓN Y REPORTE
 # ══════════════════════════════════════════════════════════════════════════════
+
 
 def resolver_todas(instancias: list, verbose: bool = False) -> list:
     """
@@ -122,7 +128,7 @@ def imprimir_tabla_resumen(resultados: list) -> None:
         f"{'Tiempo [s]':>10}  {'Plantas':>8}  {'Estado':<10}"
     )
     print(header)
-    print(f"  {'─'*2}  {'─'*38}  {'─'*16}  {'─'*10}  {'─'*8}  {'─'*10}")
+    print(f"  {'─' * 2}  {'─' * 38}  {'─' * 16}  {'─' * 10}  {'─' * 8}  {'─' * 10}")
 
     for idx, res in enumerate(resultados, 1):
         if res.estado == "Optimal":
@@ -153,9 +159,11 @@ def imprimir_tabla_resumen(resultados: list) -> None:
 
     if tiempos:
         print(f"  Tiempo total de cómputo:     {sum(tiempos):.4f} s")
-        print(f"  Tiempo promedio por inst.:    {sum(tiempos)/len(tiempos):.4f} s")
-        print(f"  Rango de F. Objetivo:        "
-              f"[{min(valores):,.2f} — {max(valores):,.2f}] CLP/día")
+        print(f"  Tiempo promedio por inst.:    {sum(tiempos) / len(tiempos):.4f} s")
+        print(
+            f"  Rango de F. Objetivo:        "
+            f"[{min(valores):,.2f} — {max(valores):,.2f}] CLP/día"
+        )
     print()
 
 
@@ -173,21 +181,17 @@ def exportar_resultados(resultados: list, ruta_salida: str) -> None:
 
     for res in resultados:
         d = {
-            "nombre":                res.nombre,
-            "estado":                res.estado,
-            "valor_objetivo":        res.valor_objetivo,
-            "tiempo_segundos":       res.tiempo_segundos,
-            "solver_utilizado":      res.solver_utilizado,
-            "costo_fijo_total":      res.costo_fijo_total,
+            "nombre": res.nombre,
+            "estado": res.estado,
+            "valor_objetivo": res.valor_objetivo,
+            "tiempo_segundos": res.tiempo_segundos,
+            "solver_utilizado": res.solver_utilizado,
+            "costo_fijo_total": res.costo_fijo_total,
             "costo_transporte_total": res.costo_transporte_total,
             "plantas_abiertas": {
-                str(j): abierta
-                for j, abierta in res.plantas_abiertas.items()
+                str(j): abierta for j, abierta in res.plantas_abiertas.items()
             },
-            "flujos": {
-                f"{i},{j}": val
-                for (i, j), val in res.flujos.items()
-            },
+            "flujos": {f"{i},{j}": val for (i, j), val in res.flujos.items()},
         }
         datos_export.append(d)
 
@@ -201,25 +205,38 @@ def exportar_resultados(resultados: list, ruta_salida: str) -> None:
 #  PUNTO DE ENTRADA
 # ══════════════════════════════════════════════════════════════════════════════
 
+
 def main():
     parser = argparse.ArgumentParser(
         description="Resolver instancias CFLP – Gestión de Residuos de Temuco"
     )
     parser.add_argument(
-        "--instancia", type=int, default=None,
-        help="Número de instancia a resolver (1-10). Si no se indica, se resuelven todas."
+        "--instancia",
+        type=int,
+        default=None,
+        help="Número de instancia a resolver (1-10). Si no se indica, se resuelven todas.",
     )
     parser.add_argument(
-        "--verbose", action="store_true",
-        help="Mostrar log detallado del solver."
+        "--verbose", action="store_true", help="Mostrar log detallado del solver."
     )
     parser.add_argument(
-        "--exportar", type=str, default=None, metavar="NOMBRE",
-        help="Nombre base del archivo JSON de salida (se guarda en data/)."
+        "--exportar",
+        type=str,
+        default=None,
+        nargs="?",
+        const="resultados",
+        metavar="NOMBRE",
+        help=(
+            "Nombre base del archivo JSON de salida (se guarda en data/). "
+            "Si se omite el nombre, se usa 'resultados' por defecto. "
+            "Ejemplo: --exportar  o  --exportar mi_run"
+        ),
     )
     parser.add_argument(
-        "--datos", type=str, default=None,
-        help="Ruta al archivo JSON de instancias. Por defecto: data/instancias.json"
+        "--datos",
+        type=str,
+        default=None,
+        help="Ruta al archivo JSON de instancias. Por defecto: data/instancias.json",
     )
     args = parser.parse_args()
 
@@ -242,7 +259,9 @@ def main():
     if args.instancia is not None:
         idx = args.instancia - 1
         if idx < 0 or idx >= len(instancias):
-            print(f"  ✗ ERROR: Instancia {args.instancia} fuera de rango [1-{len(instancias)}]")
+            print(
+                f"  ✗ ERROR: Instancia {args.instancia} fuera de rango [1-{len(instancias)}]"
+            )
             sys.exit(1)
         instancias = [instancias[idx]]
 
